@@ -9,6 +9,7 @@ type DetailsScreenRouteProp = RouteProp<RootStackParamList, 'Details'>;
 export default function Details() {
   const router = useRoute<DetailsScreenRouteProp>();
 
+  
   return (
     <View style={styles.container}>
       <ScreenContent
