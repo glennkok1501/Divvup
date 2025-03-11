@@ -47,8 +47,47 @@ const Home = () => {
     let actsData = [
       {
         id: 1,
-        name: 'Netflex Standard'
+        name: 'Netflix Standard',
+        date: "1-Jan-2025",
+        amount: "15.99",
       },
+      {
+        id: 2,
+        name: 'Hulu Premoum',
+        date: "13-Jan-2025",
+        amount: "11.99",
+      },
+      {
+        id: 3,
+        name: 'grocery',
+        date: "16-Jan-2025",
+        amount: "32.5",
+      },
+      {
+        id: 4,
+        name: 'Lunch with John',
+        date: "6-Feb-2025",
+        amount: "21.23",
+      },
+      {
+        id: 5,
+        name: 'Birthday gift',
+        date: "11-Feb-2025",
+        amount: "11.99",
+      },
+      {
+        id: 6,
+        name: 'Dinner with friends',
+        date: "1-Mar-2025",
+        amount: "14",
+      },
+      {
+        id: 7,
+        name: 'Gathering',
+        date: "11-Mar-2025",
+        amount: "33",
+      },
+      
     ]
     setActs(actsData)
   }
@@ -77,7 +116,7 @@ const Home = () => {
           <YStack flex={1} gap="$8">
             <ProfileView />
             <TripsListView data={trips} />
-            <RecActListView data={acts} />
+            <RecActListView data={acts.slice(0, 10)} />
 
           </YStack>
         </Theme>
