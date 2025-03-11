@@ -3,6 +3,7 @@
     "name": "divvup",
     "slug": "divvup",
     "version": "1.0.0",
+    "newArchEnabled": true,
 
     "web": {
       "favicon": "./assets/favicon.png"
