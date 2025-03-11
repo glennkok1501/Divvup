@@ -13,9 +13,10 @@ import {
 } from 'tamagui';
 import TripCard from './TripCard';
 import { useEffect, useState } from 'react';
-import { Plus } from 'lucide-react-native';
+import { Plane, Plus } from 'lucide-react-native';
 import { themes } from '@tamagui/themes';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import EmptyContent from './EmptyContent';
 
 const TripsListView = ({ data }: { data: any }) => {
   return (
@@ -28,6 +29,8 @@ const TripsListView = ({ data }: { data: any }) => {
           </Text>
         </TouchableOpacity>
       </XStack>
+
+        {!data.length && <EmptyContent icon={<Plane color="grey" size="40" />} message="Planning for your next trip?"/>}
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {data.map((trip: any) => (
           <TripCard

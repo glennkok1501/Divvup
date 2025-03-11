@@ -42,7 +42,6 @@ const Home = () => {
           'https://kids.earth.org/wp-content/uploads/2024/05/Untitled-1024-%C3%97-683px-45-900x600.jpg',
       },
     ];
-    setTrips(tripsData);
 
     let actsData = [
       {
@@ -89,7 +88,9 @@ const Home = () => {
       },
       
     ]
-    setActs(actsData)
+
+    // setTrips(tripsData);
+    // setActs(actsData)
   }
 
   useEffect(() => {

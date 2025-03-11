@@ -1,8 +1,8 @@
 import { themes } from '@tamagui/themes';
 import { Users } from 'lucide-react-native';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Card, H4, Image, SizableText, XStack } from 'tamagui';
+import { Card, H4, Image, SizableText } from 'tamagui';
 
 const TripCard = ({
   name,

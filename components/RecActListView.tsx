@@ -1,6 +1,8 @@
 import { Pressable } from 'react-native';
 import { H4, SizableText, XStack, YStack } from 'tamagui';
 import TransactionsList from './TransactionsList';
+import EmptyContent from './EmptyContent';
+import { Receipt } from 'lucide-react-native';
 
 const RecActListView = ({ data }: { data: any }) => {
   return (
@@ -13,6 +15,8 @@ const RecActListView = ({ data }: { data: any }) => {
           </SizableText>
         </Pressable>
       </XStack>
+      {!data.length && <EmptyContent icon={<Receipt color="grey" size="40" />} message="Let's Divvup the bill :)"/>}
+
       <TransactionsList data={data} />
     </YStack>
   );

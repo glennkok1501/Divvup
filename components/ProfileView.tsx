@@ -22,13 +22,13 @@ const ProfileView = () => {
             <SizableText size="$7" fontWeight="500">
               {name}
             </SizableText>
-            <SizableText size="$5" theme="alt1">
+            <SizableText size="$2" theme="alt1">
               Friends: {NumShort(friendsCount)}
             </SizableText>
           </View>
         </YStack>
         <TouchableOpacity>
-            <BellIcon color={themes.light.color} />
+          <BellIcon color={themes.light.color} />
         </TouchableOpacity>
       </XStack>
       <Button themeInverse size="$3" color={themes.dark.color} icon={UserPenIcon}>
