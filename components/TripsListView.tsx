@@ -1,56 +1,59 @@
-import { Pressable } from "react-native";
-import { H3, Paragraph, ScrollView, SizableText, View, XStack, YStack } from "tamagui";
-import TripCard from "./TripCard";
-import { useEffect, useState } from "react";
+import { Pressable, StyleSheet } from 'react-native';
+import {
+  Button,
+  H3,
+  H4,
+  Paragraph,
+  ScrollView,
+  SizableText,
+  Text,
+  View,
+  XStack,
+  YStack,
+} from 'tamagui';
+import TripCard from './TripCard';
+import { useEffect, useState } from 'react';
+import { Plus } from 'lucide-react-native';
+import { themes } from '@tamagui/themes';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const TripsListView = () => {
-      const [isLoading, setIsLoading] = useState(true)
-    //   const [trips, setTrips] = useState<any[]>([])
-    
-    const [trips, setTrips] = useState([
-        {"id": 1, "name": "Japan Trip", "membersCount": 6, "image": "https://rimage.gnst.jp/livejapan.com/public/article/detail/a/00/02/a0002487/img/basic/a0002487_main.jpg"}, 
-        {"id": 2, "name": "Bangkok with friends", "membersCount": 4, "image": "https://static.independent.co.uk/2025/01/03/14/newFile-12.jpg"}, 
-        {"id": 3, "name": "School programme", "membersCount": 100, "image": "https://www.sembawangpri.moe.edu.sg/images/pic2.jpg"}, 
-        {"id": 4, "name": "Zoo", "membersCount": 3, "image": "https://kids.earth.org/wp-content/uploads/2024/05/Untitled-1024-%C3%97-683px-45-900x600.jpg"}
-    ])
-      
-    //   useEffect(() => {
-    //     let data = [{"id": 1, "name": "Japan Trip"}, {"id": 2, "name": "Bangkok with friends"}, {"id": 3, "name": "School programme"}, {"id": 4, "name": "Zoo"}]
-    //     setTrips([...trips, ...data])
-    //     setIsLoading(false)
-    //   }, [])
-    
-    return ( 
-        
-        <YStack gap="$2">
-            <XStack alignItems="center" justifyContent="space-between">
-                <H3 fontWeight="500">Trips</H3>
-                {/* <Pressable>
-                    <SizableText size="$4" theme="alt1" >View All</SizableText>
-                </Pressable> */}
-            </XStack>
-            <ScrollView
-                horizontal
-                showsHorizontalScrollIndicator={false}>
-                    {
-                        trips.map((trip) => (
-                            <TripCard key={trip.id} name={trip.name} membersCount={trip.membersCount} image={trip.image} />
-                        ))
-                    }
+const TripsListView = ({ data }: { data: any }) => {
+  return (
+    <YStack gap="$3">
+      <XStack alignItems="center" justifyContent="space-between">
+        <H4 fontWeight="500">Trips</H4>
+        <TouchableOpacity>
+          <Text style={styles.addBtn}>
+            <Plus size="15" color={themes.light.color} />
+          </Text>
+        </TouchableOpacity>
+      </XStack>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {data.map((trip: any) => (
+          <TripCard
+            key={trip.id}
+            name={trip.name}
+            membersCount={trip.membersCount}
+            image={trip.image}
+          />
+        ))}
+      </ScrollView>
+    </YStack>
+  );
+};
 
-                
-                
-                {/* <TripCard name="testssssssssssssssssssssssssssss" />
-                <TripCard name="test" />
-                <TripCard name="test" />
-                <TripCard name="test" />
-                <TripCard name="test" />
-                <TripCard name="test" /> */}
+const styles = StyleSheet.create({
+  addBtn: {
+    backgroundColor: themes.light.background,
+    color: themes.light.color,
+    borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: themes.light.color,
+    borderWidth: 1,
+    paddingEnd: 10,
+    paddingStart: 10,
+  },
+});
 
-            </ScrollView>
-        </YStack>
-            
-     );
-}
- 
 export default TripsListView;
