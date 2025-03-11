@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 function NumShort(num) {
     num = num.toString().replace(/[^0-9.]/g, '');
     if (num < 1000) {
