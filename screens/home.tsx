@@ -30,7 +30,7 @@ const Home = () => {
       },
       {
         id: 3,
-        name: 'School programme',
+        name: 'School programmeeeeeeeeeeeee',
         membersCount: 100,
         image: 'https://www.sembawangpri.moe.edu.sg/images/pic2.jpg',
       },
@@ -52,7 +52,7 @@ const Home = () => {
       },
       {
         id: 2,
-        name: 'Hulu Premoum',
+        name: 'Hulu Premium',
         date: "13-Jan-2025",
         amount: "11.99",
       },
@@ -88,9 +88,9 @@ const Home = () => {
       },
       
     ]
-
-    // setTrips(tripsData);
-    // setActs(actsData)
+    
+    setTrips(tripsData);
+    setActs(actsData)
   }
 
   useEffect(() => {

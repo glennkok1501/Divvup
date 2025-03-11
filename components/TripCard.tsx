@@ -2,7 +2,7 @@ import { themes } from '@tamagui/themes';
 import { Users } from 'lucide-react-native';
 import { StyleSheet, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Card, H4, Image, SizableText } from 'tamagui';
+import { Card, H4, H5, H6, Image, Paragraph, SizableText } from 'tamagui';
 
 const TripCard = ({
   name,
@@ -22,8 +22,11 @@ const TripCard = ({
 
   const styles = StyleSheet.create({
     card: {
+      borderRadius: 20,
+      marginEnd:30,
       width: 200,
-      height: 180,
+    },
+    imageBg: {
       borderRadius: 20,
     },
     members: {
@@ -39,6 +42,9 @@ const TripCard = ({
       shadowOpacity: 0.8,
       shadowRadius: 10,
       elevation: 5,
+      position: "absolute",
+      right: 5,
+      top: 70,
     },
     title: {
       backgroundColor: 'rgba(0, 0, 0, 0.54)',
@@ -49,7 +55,29 @@ const TripCard = ({
 
   return (
     <TouchableOpacity>
-      <Card style={styles.card} marginRight="$3" size="$4" width="200" height="180">
+      <View style={styles.card}>
+        <Image
+            style={styles.imageBg}
+            objectFit="cover"
+            alignSelf="center"
+            source={{
+              width: 200,
+              height: 110,
+              uri: image,
+            }}
+          />
+        
+      <SizableText size="$5" fontWeight="300" marginStart="$2" paddingEnd="$2" numberOfLines={1}>
+        {name}
+      </SizableText>
+      <View style={styles.members}>
+            <SizableText marginEnd="$2" size="$5" fontWeight="400" color={themes.light.color}>
+              {membersCountShort(membersCount)}
+            </SizableText>
+            <Users size="15" color={themes.light.color} />
+          </View>
+      </View>
+      {/* <Card style={styles.card} marginRight="$3" size="$4" width="200" height="180">
         <Card.Header padded style={styles.title}>
           <H4 color={themes.dark.color} fontWeight="300" numberOfLines={1}>
             {name}
@@ -74,7 +102,7 @@ const TripCard = ({
             }}
           />
         </Card.Background>
-      </Card>
+      </Card> */}
     </TouchableOpacity>
   );
 };
