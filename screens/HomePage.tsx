@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { RefreshControl, ScrollView, StyleSheet, View } from 'react-native';
 import { Paragraph, Separator, Theme, YStack } from 'tamagui';
 
-const Home = () => {
+const HomePage = () => {
   const [trips, setTrips] = useState<any[]>([]);
   const [acts, setActs] = useState<any[]>([]);
   const [refreshing, setRefreshing] = React.useState(false);
@@ -108,17 +108,17 @@ const Home = () => {
 
   return (
     <ScrollView
+      showsVerticalScrollIndicator={false}
       style={styles.container}
       refreshControl={
         <RefreshControl refreshing={refreshing} title="Pull to Refresh" onRefresh={onRefresh} />
       }>
       <View>
         <Theme name="light">
-          <YStack flex={1} gap="$8">
+          <YStack flex={1} gap="$8" marginBottom="$11">
             <ProfileView />
             <TripsListView data={trips} />
             <RecActListView data={acts.slice(0, 10)} />
-
           </YStack>
         </Theme>
       </View>
@@ -132,5 +132,5 @@ export const styles = StyleSheet.create({
     marginTop: 50,
   },
 });
-export default Home;
+export default HomePage;
 
