@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     selected: {
         color: "white",
         borderRadius: 25,
-        backgroundColor: "grey",
+        backgroundColor: "black",
     },
     tabText: {
         fontSize: 14,
