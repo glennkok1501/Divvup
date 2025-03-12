@@ -4,7 +4,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 const CustomPageNav = ({components, headers}: {components: any, headers: any}) => {
     
     const [selected, setSelected] = useState(0)
-
+    
     const selectComponent = (s: string) => {
         for (var i = 0; i < headers.length; i++) {
             if (headers[i] == s) {
@@ -18,7 +18,7 @@ const CustomPageNav = ({components, headers}: {components: any, headers: any}) =
             <View style={styles.tabsRow}>
                 {
                     headers.map((header: string) => (
-                        <Pressable onPress={() => selectComponent(header)} style={[styles.tab, headers[selected] == header && styles.selected]} key={header}>
+                        <Pressable onPress={() => selectComponent(header)} style={[{width: `${100/headers.length}%`}, styles.tab, headers[selected] == header && styles.selected]} key={header}>
                             <Text style={[styles.tabText, headers[selected] == header && styles.selected]}>
                                 {header}
                             </Text>
