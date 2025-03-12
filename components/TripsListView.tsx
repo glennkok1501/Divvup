@@ -23,11 +23,7 @@ const TripsListView = ({ data }: { data: any }) => {
     <YStack gap="$3">
       <XStack alignItems="center" justifyContent="space-between">
         <H4 fontWeight="500">Trips</H4>
-        <TouchableOpacity>
-          <Text style={styles.addBtn}>
-            <Plus size="15" color={themes.light.color} />
-          </Text>
-        </TouchableOpacity>
+        
       </XStack>
 
         {!data.length && <EmptyContent icon={<Plane color="grey" size="40" />} message="Planning for your next trip?"/>}
@@ -44,19 +40,5 @@ const TripsListView = ({ data }: { data: any }) => {
     </YStack>
   );
 };
-
-const styles = StyleSheet.create({
-  addBtn: {
-    backgroundColor: themes.light.background,
-    color: themes.light.color,
-    borderRadius: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderColor: themes.light.color,
-    borderWidth: 1,
-    paddingEnd: 10,
-    paddingStart: 10,
-  },
-});
 
 export default TripsListView;

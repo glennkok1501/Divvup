@@ -3,7 +3,7 @@ import { Users } from 'lucide-react-native';
 import { StyleSheet, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Card, H4, H5, H6, Image, Paragraph, SizableText } from 'tamagui';
-
+import MembersCountShorterner from './MembersCountShorterner';
 const TripCard = ({
   name,
   membersCount,
@@ -13,12 +13,6 @@ const TripCard = ({
   membersCount: number;
   image: string;
 }) => {
-  const membersCountShort = (count: number) => {
-    if (count > 99) {
-      return '99+';
-    }
-    return String(count);
-  };
 
   const styles = StyleSheet.create({
     card: {
@@ -72,37 +66,11 @@ const TripCard = ({
       </SizableText>
       <View style={styles.members}>
             <SizableText marginEnd="$2" size="$5" fontWeight="400" color={themes.light.color}>
-              {membersCountShort(membersCount)}
+              {MembersCountShorterner(membersCount)}
             </SizableText>
             <Users size="15" color={themes.light.color} />
           </View>
       </View>
-      {/* <Card style={styles.card} marginRight="$3" size="$4" width="200" height="180">
-        <Card.Header padded style={styles.title}>
-          <H4 color={themes.dark.color} fontWeight="300" numberOfLines={1}>
-            {name}
-          </H4>
-        </Card.Header>
-        <Card.Footer padded>
-          <View style={styles.members}>
-            <SizableText marginEnd="$2" size="$5" fontWeight="400" color={themes.light.color}>
-              {membersCountShort(membersCount)}
-            </SizableText>
-            <Users size="15" color={themes.light.color} />
-          </View>
-        </Card.Footer>
-        <Card.Background style={styles.card}>
-          <Image
-            objectFit="cover"
-            alignSelf="center"
-            source={{
-              width: 200,
-              height: 180,
-              uri: image,
-            }}
-          />
-        </Card.Background>
-      </Card> */}
     </TouchableOpacity>
   );
 };
