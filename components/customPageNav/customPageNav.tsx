@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     },
     tabText: {
         fontSize: 14,
-        color: "grey"
+        color: "black"
     },
     page: {
         padding: 5,
