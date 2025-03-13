@@ -4,7 +4,7 @@ import { useState } from "react";
 import { FlatList, Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Avatar, SizableText } from "tamagui";
 
-const SplitWithFriends = () => {
+const SplitWithFriends = ({selected, setSelected}: {selected: any, setSelected: any}) => {
 
     const friends = [
         {id: 0, name: "Alphaeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", avatar: "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg"},
@@ -21,7 +21,6 @@ const SplitWithFriends = () => {
 
     ]
         const [filtered, setFiltered] = useState(friends)
-        const [selected, setSelected] = useState<any>([]);
 
         const onSelectHandler = (id: number) => {
             setSelected((prevSelected: number[]) =>
@@ -31,13 +30,21 @@ const SplitWithFriends = () => {
             );
         };
 
+        const splitText = (n: number) => {
+            if (n == 1) {
+                return "1 person"
+            }
+            else if (n < 1) {
+                return "no one"
+            }
+            return `${n} people`
+        }
+
         return ( 
         <View>
-            <View style={styles.search}>
-                <SizableText style={{marginEnd: 5}} size="$5">Split with</SizableText>
-                <View style={{flexGrow: 1}}>
-                    <SearchBar data={friends} setFiltered={setFiltered} />
-                </View>
+            <SizableText style={{marginEnd: 5}} size="$5">{`Split with ${splitText(selected.length)}`}</SizableText>
+            <View style={{flexGrow: 1}}>
+                <SearchBar data={friends} setFiltered={setFiltered} />
             </View>
 
             <FlatList
@@ -49,7 +56,7 @@ const SplitWithFriends = () => {
                     <TouchableOpacity onPress={() => {
                         onSelectHandler(item.id)
                     }} style={{justifyContent: "center", alignItems: "center", width:75}}>
-                        <Check size="30" style={styles.check} color="green" />
+                        {selected.includes(item.id) && <Check size="15" style={styles.check} color="white" />}
                         <Image
                             src={item.avatar}
                             style={[selected.includes(item.id) && styles.selectedBubble, styles.friendsBubble]}
@@ -66,9 +73,11 @@ const SplitWithFriends = () => {
 const styles = StyleSheet.create({
     check: {
         position: "absolute",
-        right: 0,
-        top: 0,
+        right: 8,
+        top: 2,
         zIndex: 1,
+        backgroundColor: "green",
+        borderRadius: 25,
     },
     search: {
         flexDirection: "row",

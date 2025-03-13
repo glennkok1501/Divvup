@@ -2,13 +2,13 @@ import { View } from "react-native";
 import { SizableText, RadioGroup, YStack, XStack, Label } from "tamagui";
 import { BillingOptions } from "./BillingOptions";
 
-const AddBilling = () => {
+const AddBilling = ({setBilling}: {setBilling: any}) => {
     const billOptions = BillingOptions
 
     return ( 
             <View>
                 <SizableText size="$5">Split by</SizableText>
-                <RadioGroup aria-labelledby="Select one item" defaultValue="0" name="form">
+                <RadioGroup aria-labelledby="Select one item" defaultValue="0" name="form" onValueChange={(e) => setBilling(parseInt(e))}>
                 <YStack width={300} alignItems="center" gap="$1">
                     <RadioGroupItemWithLabel size="$4" value="0" label={billOptions[0].title} />
                     <RadioGroupItemWithLabel size="$4" value="1" label={billOptions[1].title} />

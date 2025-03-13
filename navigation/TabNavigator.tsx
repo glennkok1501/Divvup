@@ -18,8 +18,8 @@ const TabNavigator = () => {
 
   const iconProps = {
     size: '25',
-    color: themes.light.gray8,
-    selectedColor: 'black',
+    color: themes.light.gray10,
+    selectedColor: 'white',
     style: { top: 8 },
   };
 
@@ -29,18 +29,12 @@ const TabNavigator = () => {
         tabBarShowLabel: false,
         headerShown: false,
         tabBarStyle: {
-          position: 'absolute',
-          bottom: 20,
-          left: 20,
-          right: 20,
+          
           shadowColor: '#000',
           shadowOffset: { width: 0, height: 1 },
           shadowOpacity: 0.5,
           shadowRadius: 5,
-          backgroundColor: 'white',
-          borderRadius: 25,
-          height: 60,
-          marginHorizontal: 20,
+          backgroundColor: themes.dark.background,
         },
       }}>
       <Tab.Screen

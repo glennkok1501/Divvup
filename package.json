@@ -19,7 +19,7 @@
     "@tamagui/react-native-media-driver": "^1.125.8",
     "@tamagui/shorthands": "^1.125.8",
     "@tamagui/themes": "^1.125.8",
-    "expo": "^52.0.37",
+    "expo": "^52.0.38",
     "expo-font": "~13.0.3",
     "expo-splash-screen": "~0.29.22",
     "expo-status-bar": "~2.0.1",
