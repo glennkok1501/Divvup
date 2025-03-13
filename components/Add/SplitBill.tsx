@@ -17,7 +17,6 @@ const SplitBill = () => {
     const [total, setTotal] = useState(0.0)
 
     const calTotal = (amount: number, selectedFriends: number, billing: number) => {
-        console.log(selectedFriends)
         switch(billing) {
             case 0:
               setTotal(amount / (selectedFriends + 1))
@@ -42,7 +41,7 @@ const SplitBill = () => {
     return ( 
         <ScrollView
             showsVerticalScrollIndicator={false}>
-            <YStack gap="$6">
+            <YStack marginBottom="$3" gap="$6">
             
                 <AddTitle title={title} setTitle={setTitle}  />
 
@@ -68,7 +67,7 @@ const SplitBill = () => {
                         
                     </View>
             
-                <CustomButton onPress={''} title="Submit" />
+                {amount > 0 && selectedFriends.length > 0 && title && <CustomButton onPress={''} title="Submit" />}
                 
             </YStack>
 
