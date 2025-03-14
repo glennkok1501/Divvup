@@ -1,4 +1,4 @@
-import { ScrollView } from 'tamagui';
+import { ScrollView } from 'react-native';
 import TransactionView from './TransactionView';
 
 const TransactionsList = ({ data }: { data: any }) => {

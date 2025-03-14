@@ -1,6 +1,5 @@
 import { Pressable } from 'react-native';
 import { H4, SizableText, XStack, YStack } from 'tamagui';
-import TransactionsList from './TransactionsList';
 import EmptyContent from './EmptyContent';
 import { Receipt } from 'lucide-react-native';
 import TransactionView from './TransactionView';

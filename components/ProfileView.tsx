@@ -1,8 +1,10 @@
 import { themes } from '@tamagui/themes';
 import { BellIcon, UserPenIcon } from 'lucide-react-native';
-import { Avatar, Button, SizableText, View, XStack, YStack } from 'tamagui';
+import { Avatar, Button, SizableText, XStack, YStack } from 'tamagui';
 import NumShort from './NumberShorterner';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View } from 'react-native';
+
 const ProfileView = () => {
   const name = 'John Smith';
   const friendsCount = 12332;
