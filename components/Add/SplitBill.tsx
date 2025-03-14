@@ -16,6 +16,21 @@ const SplitBill = () => {
     const [selectedFriends, setSelectedFriends] = useState<any>([]);
     const [total, setTotal] = useState(0.0);
     const [submit, setSubmit] = useState(false);
+    const [showSplitModal, setShowSplitModal] = useState(false)
+    const friends = [
+        {id: 0, name: "Alphaeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", avatar: "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg"},
+        {id: 1, name: "Bravo", avatar: "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg"},
+        {id: 2, name: "Charlie", avatar: "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg"},
+        {id: 3, name: "Delta", avatar: "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg"},
+        {id: 4, name: "Echo", avatar: "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg"},
+        {id: 5, name: "Foxtrot", avatar: "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg"},
+        {id: 6, name: "Golf", avatar: "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg"},
+        {id: 7, name: "Hotel", avatar: "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg"},
+        {id: 8, name: "India", avatar: "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg"},
+        {id: 9, name: "Kilo", avatar: "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg"},
+        {id: 10, name: "Lima", avatar: "https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg"},
+
+    ]
 
     const calTotal = (amount: number, selectedFriends: number, billing: number) => {
         switch (billing) {
@@ -24,10 +39,14 @@ const SplitBill = () => {
                 break;
             case 1: // Paid for everyone
                 // Set total to full amount
-                break;
+                setTotal(0)
+                setShowSplitModal(true)
             case 2: // Paid for everyone
                 // Set total to full amount
-                setTotal(amount);
+                setTotal(0)
+
+                setShowSplitModal(true)
+                
                 break;
             default: // Custom or unknown cases
                 setTotal(amount);
@@ -53,7 +72,7 @@ const SplitBill = () => {
 
                     <AddAmount currency={currency} setCurrency={setCurrency} amount={amount} setAmount={setAmount} />
 
-                    <SplitWithFriends selected={selectedFriends} setSelected={setSelectedFriends} />
+                    <SplitWithFriends friends={friends} selected={selectedFriends} setSelected={setSelectedFriends} />
 
                     <AddBilling setBilling={setBilling} disabled={!(amount > 0 && selectedFriends.length > 0)} />
 
@@ -72,7 +91,7 @@ const SplitBill = () => {
                     <CustomButton disabled={!submit} onPress={() => console.log("Submitted")} title="Submit" />
                 </YStack>
             </ScrollView>
-            <SplitAmtModal />
+            <SplitAmtModal show={showSplitModal} setShow={setShowSplitModal} setTotal={setTotal} friends={friends} selectedFriends={selectedFriends} />
         </>
     );
 };

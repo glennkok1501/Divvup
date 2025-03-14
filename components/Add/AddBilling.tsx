@@ -56,13 +56,12 @@ export function RadioGroupItemWithLabel(props: {
 }) {
     const id = `radiogroup-${props.value}`;
     return (
-        <XStack alignItems="center" gap="$3" width="48%"> {/* Adjusted for 2 items per row */}
+        <XStack alignItems="center" gap="$3" width="48%">
             <RadioGroup.Item value={props.value} id={id} size={props.size} disabled={props.disabled}>
                 <RadioGroup.Indicator />
             </RadioGroup.Item>
 
             <Label size={props.size} htmlFor={id}>
-                {/* Wrap label text in a Text component */}
                 <SizableText>{props.label}</SizableText>
             </Label>
         </XStack>
