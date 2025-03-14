@@ -2,7 +2,7 @@ import { themes } from '@tamagui/themes';
 import { Users } from 'lucide-react-native';
 import { StyleSheet, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Card, H4, H5, H6, Image, Paragraph, SizableText } from 'tamagui';
+import { Image, SizableText } from 'tamagui';
 import MembersCountShorterner from './MembersCountShorterner';
 const TripCard = ({
   name,

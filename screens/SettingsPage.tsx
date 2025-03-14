@@ -1,5 +1,4 @@
-import { Text } from "react-native";
-import { View } from "tamagui";
+import { Text, View } from "react-native";
 
 const SettingsPage = () => {
     return ( 

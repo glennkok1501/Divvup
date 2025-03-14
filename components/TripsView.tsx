@@ -1,5 +1,5 @@
-import { StyleSheet, TouchableOpacity } from "react-native";
-import { H5, Image, SizableText, View, XStack } from "tamagui";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { Image, SizableText, XStack } from "tamagui";
 import MembersCountShorterner from "./MembersCountShorterner";
 
 const TripsView = ({trip}: {trip: any}) => {
@@ -16,7 +16,7 @@ const TripsView = ({trip}: {trip: any}) => {
                         uri: trip.image,
                     }}
                     /> 
-                <View padding="$3">
+                <View style={{padding: 10}}>
                     <SizableText size="$6" fontWeight="300" numberOfLines={1}>
                         {trip.name}
                     </SizableText>

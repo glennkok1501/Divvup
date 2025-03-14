@@ -1,6 +1,6 @@
 import { themes } from "@tamagui/themes";
 import { Plus } from "lucide-react-native";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 const TripAddBtn = () => {
     return ( 

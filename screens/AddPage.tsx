@@ -2,8 +2,7 @@ import AddExpense from "components/Add/SplitBill";
 import CustomPageNav from "components/customPageNav/customPageNav";
 import { globalStyles } from "components/globalStyles";
 import ProfileView from "components/ProfileView";
-import { ScrollView, Text } from "react-native";
-import { View } from "tamagui";
+import { ScrollView } from "react-native";
 
 const AddPage = () => {
     return ( 

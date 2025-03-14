@@ -1,5 +1,5 @@
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { H6, Paragraph, SizableText, View, XStack } from 'tamagui';
+import { Paragraph, SizableText, View, XStack } from 'tamagui';
 
 const TransactionView = ({ name, date, amount }: { name: string, date: string, amount: number }) => {
   return (

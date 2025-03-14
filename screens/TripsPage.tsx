@@ -2,8 +2,7 @@ import SearchBar from "components/SearchBar";
 import TripAddBtn from "components/TripAddBtn";
 import TripsList from "components/TripsList";
 import { useState } from "react";
-import { StyleSheet, Text } from "react-native";
-import { View } from "tamagui";
+import { StyleSheet, View } from "react-native";
 
 const TripsPage = () => {
     let tripsData = [

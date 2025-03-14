@@ -1,22 +1,12 @@
-import { Pressable, StyleSheet } from 'react-native';
 import {
-  Button,
-  H3,
   H4,
-  Paragraph,
-  ScrollView,
-  SizableText,
-  Text,
-  View,
   XStack,
   YStack,
 } from 'tamagui';
 import TripCard from './TripCard';
-import { useEffect, useState } from 'react';
-import { Plane, Plus } from 'lucide-react-native';
-import { themes } from '@tamagui/themes';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Plane } from 'lucide-react-native';
 import EmptyContent from './EmptyContent';
+import { ScrollView } from 'react-native';
 
 const TripsListView = ({ data }: { data: any }) => {
   return (

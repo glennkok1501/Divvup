@@ -1,10 +1,9 @@
-import { themes } from '@tamagui/themes';
 import ProfileView from 'components/ProfileView';
 import RecActListView from 'components/RecActListView';
 import TripsListView from 'components/TripsListView';
 import React, { useEffect, useState } from 'react';
 import { RefreshControl, ScrollView, StyleSheet, View } from 'react-native';
-import { Paragraph, Separator, Theme, YStack } from 'tamagui';
+import { Theme, YStack } from 'tamagui';
 
 const HomePage = () => {
   const [trips, setTrips] = useState<any[]>([]);
