@@ -2,7 +2,7 @@ import { View } from "react-native";
 import { SizableText, RadioGroup, YStack, XStack, Label } from "tamagui";
 import { BillingOptions } from "./BillingOptions";
 
-const AddBilling = ({ setBilling, disabled }: { setBilling: any; disabled: boolean }) => {
+const AddBilling = ({billing, setBilling, disabled }: {billing: number, setBilling: any; disabled: boolean }) => {
     const billOptions = BillingOptions;
 
     return (
@@ -11,6 +11,7 @@ const AddBilling = ({ setBilling, disabled }: { setBilling: any; disabled: boole
             <RadioGroup 
                 aria-labelledby="Select one item" 
                 defaultValue="0" 
+                value={billing.toString()}
                 name="form" 
                 onValueChange={(e) => setBilling(parseInt(e))}
                 disabled={disabled} // Disable entire radio group

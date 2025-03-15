@@ -37,15 +37,12 @@ const SplitBill = () => {
             case 0: // Split equally
                 setTotal(amount / (selectedFriends + 1));
                 break;
-            case 1: // Paid for everyone
-                // Set total to full amount
-                setTotal(0)
+            case 1: 
+                setTotal(amount)
                 setShowSplitModal(true)
-            case 2: // Paid for everyone
-                // Set total to full amount
-                setTotal(0)
-
-                setShowSplitModal(true)
+            case 2: 
+                // setTotal(amount)
+                // setShowSplitModal(true)
                 
                 break;
             default: // Custom or unknown cases
@@ -62,6 +59,9 @@ const SplitBill = () => {
             setTotal(0.0); // Ensure total is always defined
             setSubmit(false);
         }
+        if (total < 1) {
+            setSubmit(false)
+        }
     }, [amount, billing, selectedFriends]);
     
     return (
@@ -74,7 +74,7 @@ const SplitBill = () => {
 
                     <SplitWithFriends friends={friends} selected={selectedFriends} setSelected={setSelectedFriends} />
 
-                    <AddBilling setBilling={setBilling} disabled={!(amount > 0 && selectedFriends.length > 0)} />
+                    <AddBilling billing={billing} setBilling={setBilling} disabled={!(amount > 0 && selectedFriends.length > 0)} />
 
                     <View>
                         <SizableText size="$5">You pay</SizableText>
@@ -91,7 +91,7 @@ const SplitBill = () => {
                     <CustomButton disabled={!submit} onPress={() => console.log("Submitted")} title="Submit" />
                 </YStack>
             </ScrollView>
-            <SplitAmtModal show={showSplitModal} setShow={setShowSplitModal} setTotal={setTotal} friends={friends} selectedFriends={selectedFriends} />
+            <SplitAmtModal setBilling={setBilling} show={showSplitModal} setShow={setShowSplitModal} total={total} setTotal={setTotal} friends={friends} selectedFriends={selectedFriends} />
         </>
     );
 };
