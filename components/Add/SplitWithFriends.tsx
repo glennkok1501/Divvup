@@ -1,6 +1,6 @@
 import SearchBar from "components/SearchBar";
 import { Check } from "lucide-react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FlatList, Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Avatar, SizableText } from "tamagui";
 
@@ -8,14 +8,23 @@ const SplitWithFriends = ({friends, selected, setSelected}: {friends: any, selec
 
         const [filtered, setFiltered] = useState(friends)
 
-        const onSelectHandler = (id: number) => {
-            setSelected((prevSelected: number[]) =>
-                prevSelected.includes(id)
-                    ? prevSelected.filter((item) => item !== id) // Remove if already selected
-                    : [...prevSelected, id] // Add if not selected
-            );
+        const onSelectHandler = (friend: any) => {
+            setSelected((prevSelected: any) => {
+                const isSelected = checkSelected(prevSelected, friend.id);
+                if (isSelected) {
+                    // Remove if already selected
+                    return prevSelected.filter((item: any) => item.id !== friend.id);
+                } else {
+                    // Add if not selected, with amount key
+                    return [...prevSelected, {...friend, amount: 0}];
+                }
+            });
         };
 
+        const checkSelected = (friends: any, id: number) => {
+            return friends.some((friend: any) => friend.id === id); // Use `some` to check if friend is already selected
+        };
+        
         const splitText = (n: number) => {
             if (n == 1) {
                 return "1 person"
@@ -25,6 +34,14 @@ const SplitWithFriends = ({friends, selected, setSelected}: {friends: any, selec
             }
             return `${n} people`
         }
+
+        useEffect(() => {
+            setFiltered(friends);
+        }, [friends]);
+
+        // useEffect(() => {
+        //     console.log('Selected Friends:', selected);
+        // }, [selected]);
 
         return ( 
         <View>
@@ -40,12 +57,12 @@ const SplitWithFriends = ({friends, selected, setSelected}: {friends: any, selec
                 data={filtered}
                 renderItem={({item}) => 
                     <TouchableOpacity onPress={() => {
-                        onSelectHandler(item.id)
+                        onSelectHandler(item)
                     }} style={{justifyContent: "center", alignItems: "center", width:75}}>
-                        {selected.includes(item.id) && <Check size="15" style={styles.check} color="white" />}
+                        {checkSelected(selected, item.id) && <Check size="15" style={styles.check} color="white" />}
                         <Image
                             src={item.avatar}
-                            style={[selected.includes(item.id) && styles.selectedBubble, styles.friendsBubble]}
+                            style={[checkSelected(selected, item.id) && styles.selectedBubble, styles.friendsBubble]}
                         />
                         <SizableText theme="alt1" size="$2" numberOfLines={1}>{item.name}</SizableText>
                     </TouchableOpacity>}

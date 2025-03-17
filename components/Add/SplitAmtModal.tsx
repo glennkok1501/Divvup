@@ -4,46 +4,50 @@ import { YStack, Input } from 'tamagui';
 import { ChevronLeft } from 'lucide-react-native';
 import CustomButton from 'components/CustomButton';
 
-const SplitAmtModal = ({show, setShow, total, setTotal, friends, selectedFriends, setBilling}: {show: boolean, setShow: any, total: number, setTotal: any, friends: any, selectedFriends: any, setBilling: any}) => {
+const SplitAmtModal = ({show, setShow, total, setTotal, selectedFriends, setSelectedFriends, setBilling}: {show: boolean, setShow: any, total: number, setTotal: any, selectedFriends: any, setSelectedFriends: any, setBilling: any}) => {
     useEffect(() => {
-        setAmts(getAmts());
-        setOverallTotal(0)
-    }, [selectedFriends, total]);
+        setOverallTotal(selectedFriends.reduce((sum: number, f: any) => sum + f.amount, 0));
+    }, [selectedFriends]);
 
     const handleClose = () => {
         setShow(false);
         setBilling(0);
+        setOverallTotal(0)
     };
 
-    const getAmts = () => {
-        return friends.filter((f:any) => selectedFriends.includes(f.id)).map((f: any) => ({
-            id: f.id,
-            name: f.name,
-            avatar: f.avatar,
-            amount: 0
-        }));
-    };
-
+    // Function to set the amount for a specific friend
     const setUserAmt = (id: number, amount: number) => {
-        let updated = amts.map((f: any) => ({
-            ...f,
-            amount: f.id === id ? (!amount ? 0 : amount) : f.amount
-        }));
-        setAmts(updated);
-        setOverallTotal(updated.reduce((sum: number, f: any) => sum + f.amount, 0));
+        // Update the selected friend's amount
+        setSelectedFriends((prevSelected: any) =>
+            prevSelected.map((friend: any) =>
+                friend.id === id ? { ...friend, amount } : friend
+            )
+        );
     };
 
-    const getAmt = (id: number) => {
-        return amts.find((f: any) => f.id === id)?.amount || 0;
-    };
+    // Recalculate the overall total
+    const [overallTotal, setOverallTotal] = useState(0);
+
+    useEffect(() => {
+        setOverallTotal(selectedFriends.reduce((sum: number, f: any) => sum + f.amount, 0));
+    }, [selectedFriends]);
+
+    useEffect(() => {
+        if (show) {
+            setSelectedFriends((state: any) =>
+                state.map((f: any) => ({
+                    ...f,
+                    amount: 0, // Correct syntax to reset amount to 0
+                }))
+            );
+        }
+    }, [show])
 
     const handleSubmit = () => {
-        setTotal(total-overallTotal)
+        setTotal(total - overallTotal);
         setShow(false);
-    }
-
-    const [amts, setAmts] = useState(getAmts());
-    const [overallTotal, setOverallTotal] = useState(0);
+        setOverallTotal(0)
+    };
 
     return (
         <Modal animationType="slide" visible={show} onRequestClose={handleClose}>
@@ -55,7 +59,7 @@ const SplitAmtModal = ({show, setShow, total, setTotal, friends, selectedFriends
                             <Text style={{marginTop: 10, fontSize: 16, textAlign: "right", color: "grey"}}>{total}</Text>
                         </View>
                         <ScrollView style={styles.scrollView}>
-                            {amts.map((f: any) => (
+                            {selectedFriends.map((f: any) => (
                                 <View style={styles.friendsView} key={f.id}>
                                     <View style={{width: 80, alignItems: "center"}}>
                                         <Image style={styles.friendsBubble} source={{ uri: f.avatar }} />
@@ -64,7 +68,7 @@ const SplitAmtModal = ({show, setShow, total, setTotal, friends, selectedFriends
                                     <Input
                                         selectionColor="black"
                                         backgroundColor="black"
-                                        value={String(getAmt(f.id))}
+                                        value={f.amount}
                                         onChangeText={text => setUserAmt(f.id, parseFloat(text) || 0)}
                                         maxLength={10}
                                         keyboardType="decimal-pad"
@@ -81,7 +85,7 @@ const SplitAmtModal = ({show, setShow, total, setTotal, friends, selectedFriends
                         </TouchableOpacity>
                         <View style={{flexGrow: 1, marginStart: 30}}>
                                 <Text style={{textAlign: "center", color: "grey", margin: 5}}>You would pay</Text>
-                                <CustomButton onPress={() => handleSubmit()} title={`${total-overallTotal}`} />
+                                <CustomButton disabled={!overallTotal} onPress={() => handleSubmit()} title={`${total-overallTotal}`} />
                             </View>
                         </View>
                         
